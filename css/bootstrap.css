@@ -746,8 +746,8 @@ pre code {
 }
 
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
+  /*padding-right: 15px;*/
+  /*padding-left: 15px;*/
   margin-right: auto;
   margin-left: auto;
 }
@@ -4923,7 +4923,7 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  /*background-color: #eeeeee;*/
 }
 
 .jumbotron h1 {

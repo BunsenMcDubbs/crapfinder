@@ -4,12 +4,37 @@
    Author's custom styles
    ========================================================================== */
 
+.currencyinput {
+    background-color: white;
+    display: inline-block;
+}
+.currencyinput input {
+    border: 0;
+}
 
+#search {
+	display: block;
+	text-align: left;
+	float: left;
+}
 
+#results {
+	display: block;
+	text-align: right;
+	float: left;
+	width: 40%;	
+}
 
+body {
+	background-color: #eeeeee;
+}
 
-
-
+.jumbotron{
+	width: 1170px;
+	margin: auto;
+	padding-left: 0px;
+	padding-right: 0px;
+}
 
 
 

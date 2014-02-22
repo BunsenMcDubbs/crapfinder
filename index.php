@@ -30,17 +30,29 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
+      <div class="container" id="search">
         <h1>Find crap!</h1>
         
 		<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
-		How much money you want to blow: <input type="number" name="dollar" required="true" min="0" step="any">
+		How much money you want to blow: <span class="currencyinput">$
+			<input type="number" name="dollar" required="true" min="0" step="any"
+			onfocus="this.value='';"
+			value="
+			<?php 
+				if(isset($_REQUEST["dollar"]))
+					echo $_REQUEST["dollar"];
+				else echo "0"
+			?>
+			">
+			</span>
 		<input type="submit">
+
 		</form>
 
       </div>
       
-      <div class="container">
+      <div class="container" id ="results">
+      	
    	    <?php
    	    
    	    	function todollar($num){
@@ -51,19 +63,17 @@
 				return;
 			}
 			$maxValue = $_REQUEST["dollar"];
-			if($maxValue != 0){
-				echo "<h3>";
-				echo "For ";
-				echo toDollar($maxValue);
-				echo " you can buy...";
-				echo "</h3>";
+			if($maxValue == 0){
+				return;
 			}
+
+			echo "<h3>With ".toDollar($maxValue)." you can buy...</h3>";
+	
+			
+			// KOUSHIK'S CODE
 	
 			// first get the file
 			$file = fopen('shit.csv', 'r');
-			
-			// results delimited by ~
-			// properties delimited by %
 			
 			$results = array();
 			$counter = 0;
@@ -73,8 +83,9 @@
 			}
 			
 			fclose($file);
+			
 			// now file is separated by results and properties
-
+			
 			$affordableItems = array();
 			// traverse the array and remove all items that are more expensive than the max value
 			$j = 0;
@@ -100,17 +111,26 @@
 				}
 			}
 			
-			// now I have all the items I can afford
+			// formulate result: random item
+			$randIndex = mt_rand(0,count($affordableItems)-2);
+			// echo $randIndex;
 			
-			//formulate first result: most expensive thing I can buy
-			$mostExpensiveItem = $results[$maxIndex];
+			// calculate how many of this item I can buy
+			$items = $maxValue/$affordableItems[$randIndex][3];
 			
-			// var_dump($mostExpensiveItem);
+			$finalItem = array();
+			for($i = 0; $i < count($affordableItems[$randIndex]); $i++){
+				$finalItem[$i] = $affordableItems[$randIndex][$i];
+			}
+			$finalItem[5] = floor($items);
 			
-			echo "<p>".$mostExpensiveItem[0]." for $".$mostExpensiveItem[3]."</p>";
-			echo "<a href=\"".$mostExpensiveItem[2]."\">";
-			echo "<img src=\"".$mostExpensiveItem[1]."\" height=\"350px\">";
-			echo "</a>";
+			// var_dump($finalItem);
+			
+			
+			// Putting the results onto the screen!
+			echo 
+			"<p>".$finalItem[5]." x ".$finalItem[0]." for ".todollar($finalItem[3])."</p>".
+			"<a href=\"".$finalItem[2]."\">"."<img src=\"".$finalItem[1]."\" height=\"350px\">"."</a>";
 		
 		?>
       </div>
