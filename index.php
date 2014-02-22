@@ -42,16 +42,76 @@
       
       <div class="container">
    	    <?php
-			if(isset($_REQUEST["dollar"])){
-				$money = $_REQUEST["dollar"];
-				if($money != 0){
-					echo "<h3>";
-					echo "For ";
-					echo "\$".sprintf("%0.2f", $money);
-					echo " you can buy...";
-					echo "</h3>";
+   	    
+   	    	function todollar($num){
+   	    		return "\$".sprintf("%0.2f", $num);
+   	    	}
+   	    
+			if(!isset($_REQUEST["dollar"])){
+				return;
+			}
+			$maxValue = $_REQUEST["dollar"];
+			if($maxValue != 0){
+				echo "<h3>";
+				echo "For ";
+				echo toDollar($maxValue);
+				echo " you can buy...";
+				echo "</h3>";
+			}
+	
+			// first get the file
+			$file = fopen('shit.csv', 'r');
+			
+			// results delimited by ~
+			// properties delimited by %
+			
+			$results = array();
+			$counter = 0;
+			while (! feof($file) ){
+				$results[$counter] = fgetcsv($file,0,'*');
+				$counter = $counter + 1;
+			}
+			
+			fclose($file);
+			// now file is separated by results and properties
+
+			$affordableItems = array();
+			// traverse the array and remove all items that are more expensive than the max value
+			$j = 0;
+			// index for the most expensive thing I can get
+			$maxIndex = -1;
+			// running max value so far
+			$runningMax = -1;
+			
+			for($i = 0; $i < count($results); $i++){
+				// check the max value, if it is less, then add to the array
+				if($results[$i][3] <= $maxValue){
+					$affordableItems[$j] = $results[$i];
+					
+					
+					// if need be, reset the runningMax and maxIndex
+					
+					if($results[$i][3] > $runningMax){
+						$maxIndex = $i;
+						$runningMax = $results[$i][3];
+					}
+					
+					$j++;
 				}
 			}
+			
+			// now I have all the items I can afford
+			
+			//formulate first result: most expensive thing I can buy
+			$mostExpensiveItem = $results[$maxIndex];
+			
+			// var_dump($mostExpensiveItem);
+			
+			echo "<p>".$mostExpensiveItem[0]." for $".$mostExpensiveItem[3]."</p>";
+			echo "<a href=\"".$mostExpensiveItem[2]."\">";
+			echo "<img src=\"".$mostExpensiveItem[1]."\" height=\"350px\">";
+			echo "</a>";
+		
 		?>
       </div>
     </div>
