@@ -23,7 +23,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="index.php"><span id="teamName"><b>Team mmmYEP</b></span> presents</a>
+          <a class="navbar-brand" href="index.php"><span id="teamName"><b>Team mmmYEP</b></span> presents...</a>
           <a class="navbar-brand" href="about.html">about us.</a>
         </div>
       </div>
@@ -37,6 +37,7 @@
 		<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 		How much money you want to blow: <span class="currencyinput">$
 			<input type="number" name="dollar" required="true" min="0" step="any"
+			autofocus="true"
 			value="
 			<?php 
 				if(isset($_REQUEST["dollar"]))
