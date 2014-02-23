@@ -7,9 +7,21 @@
 .currencyinput {
     background-color: white;
     display: inline-block;
+    padding-left: 7px;
 }
 .currencyinput input {
     border: 0;
+}
+
+#about {
+}
+
+#hero {
+	
+}
+
+#comment {
+	font-size: 80%;
 }
 
 #search {

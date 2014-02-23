@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
+        <title>Crap Finder v0.6 beta</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
@@ -23,7 +23,8 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="#"><b>Team mmmYEP</b> presents</a>
+          <a class="navbar-brand" href="index.php"><span id="teamName"><b>Team mmmYEP</b></span> presents</a>
+          <a class="navbar-brand" href="about.html">about us.</a>
         </div>
       </div>
     </div>
@@ -36,17 +37,15 @@
 		<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 		How much money you want to blow: <span class="currencyinput">$
 			<input type="number" name="dollar" required="true" min="0" step="any"
-			onfocus="this.value='';"
 			value="
 			<?php 
 				if(isset($_REQUEST["dollar"]))
 					echo $_REQUEST["dollar"];
-				else echo "0"
+				else echo "0";
 			?>
 			">
 			</span>
-		<input type="submit">
-
+		<input type="submit" value="Spend!">
 		</form>
 
       </div>
@@ -133,11 +132,28 @@
 			
 			// Putting the results onto the screen!
 			if(isset($finalItem)){
+				$name = $finalItem[0];
+				$image = $finalItem[1];
+				$link = $finalItem[2];
+				$price = $finalItem[3];
+				$comment = $finalItem[4];
+				$multiple = $finalItem[5];
 				echo 
-				"<p><b>".$finalItem[5]." x </b><i>".$finalItem[0]."</i> for ".todollar($finalItem[3])."</p>".
-				"<a href=\"".$finalItem[2]."\">"."<img src=\"".$finalItem[1]."\" height=\"350px\">"."</a>";
-				if (isset($finalItem[4])){
-					echo "<p>".$finalItem[4]."</p>";
+				"<p><b>".$multiple." x </b><i>".$name."</i> for <b>".todollar($price);
+				if ($multiple > 1){
+					echo "</b> each";
+				}
+				else {
+					echo "</b>";
+				}
+				echo "</p>".
+				"<a href=\"".$link."\">"."<img src=\"".$image."\" height=\"350px\">"."</a>";
+				if (isset($comment) && strlen($comment)>0){
+					echo "<p id=\"comment\">(".$comment.")</p>";
+				}
+				$leftover = $maxValue - $price * $multiple;
+				if ($leftover > 0){
+					echo "<p>and have <b>".todollar($leftover)."</b> leftover!!!!";
 				}
 			}
 			else {
