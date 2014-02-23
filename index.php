@@ -31,7 +31,7 @@
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container" id="search">
-        <h1>Find crap!</h1>
+        <h1 id="hero">Find crap!</h1>
         
 		<form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
 		How much money you want to blow: <span class="currencyinput">$
@@ -67,7 +67,7 @@
 				return;
 			}
 
-			echo "<h3>With ".toDollar($maxValue)." you can buy...</h3>";
+			echo "<h2>With ".toDollar($maxValue)." you can buy...</h2>";
 	
 			
 			// KOUSHIK'S CODE
@@ -112,6 +112,10 @@
 			}
 			
 			// formulate result: random item
+			if (count($affordableItems)-2 <= 0){
+				echo "<p>Nothing.</p>";
+				return;
+			}
 			$randIndex = mt_rand(0,count($affordableItems)-2);
 			// echo $randIndex;
 			
@@ -128,9 +132,17 @@
 			
 			
 			// Putting the results onto the screen!
-			echo 
-			"<p>".$finalItem[5]." x ".$finalItem[0]." for ".todollar($finalItem[3])."</p>".
-			"<a href=\"".$finalItem[2]."\">"."<img src=\"".$finalItem[1]."\" height=\"350px\">"."</a>";
+			if(isset($finalItem)){
+				echo 
+				"<p><b>".$finalItem[5]." x </b><i>".$finalItem[0]."</i> for ".todollar($finalItem[3])."</p>".
+				"<a href=\"".$finalItem[2]."\">"."<img src=\"".$finalItem[1]."\" height=\"350px\">"."</a>";
+				if (isset($finalItem[4])){
+					echo "<p>".$finalItem[4]."</p>";
+				}
+			}
+			else {
+				echo "<p>Nothing.</p>";
+			}
 		
 		?>
       </div>
