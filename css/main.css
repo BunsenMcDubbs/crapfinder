@@ -22,6 +22,11 @@ img {
 	margin-top: 0px;
 }
 
+.teamname {
+	font-style: italic;
+	font-weight: bold;
+}
+
 .bio {
 	width: 22%;
 	height: 700px;

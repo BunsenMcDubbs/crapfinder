@@ -23,7 +23,7 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <a class="navbar-brand" href="/index.php"><span id="teamName"><b>Team mmmYEP</b></span> presents...</a>
+          <a class="navbar-brand" href="/index.php"><span class="teamname"><b>Team mmmYEP</b></span> presents...</a>
           <a class="navbar-brand" href="about/index.html">about us.</a>
         </div>
       </div>
