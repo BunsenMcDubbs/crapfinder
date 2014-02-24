@@ -30,9 +30,9 @@ img {
 .bio {
 	width: 22%;
 	height: 700px;
-	display: inline-block;
+	display: block;
 	float: left;
-	margin: 0 1%;
+	margin-right: 3%;
 }
 
 .bio li, .bio p{
@@ -41,7 +41,7 @@ img {
 }
 
 .bio ul {
-	padding-left: 10px;
+	padding-left: 16px;
 }
 
 .bio img {
