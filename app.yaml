@@ -1,4 +1,4 @@
-application: crapfinder
+application: peaceful-web-500
 version: 1
 runtime: php
 api_version: 1
@@ -13,5 +13,5 @@ handlers:
 - url: /about
   static_dir: about
 
-- url: /index.php
+- url: /.*
   script: index.php
