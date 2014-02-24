@@ -18,6 +18,31 @@ img {
 	width: auto;
 }
 
+#aboutmmmyep {
+	margin-top: 0px;
+}
+
+.bio {
+	width: 22%;
+	height: 700px;
+	display: inline-block;
+	float: left;
+	margin: 0 1%;
+}
+
+.bio li, .bio p{
+	line-height: 150%;
+	font-size: 14px;
+}
+
+.bio ul {
+	padding-left: 10px;
+}
+
+.bio img {
+	height: 250px;
+}
+
 #hero {
 	
 }
