@@ -1,0 +1,17 @@
+application: crapfinder
+version: 1
+runtime: php
+api_version: 1
+
+handlers:
+- url: /css
+  static_dir: css
+
+- url: /img
+  static_dir: img
+
+- url: /about
+  static_dir: about
+
+- url: /index.php
+  script: index.php
