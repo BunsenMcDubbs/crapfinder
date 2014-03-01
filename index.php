@@ -38,13 +38,11 @@
 		How much money you want to blow: <span class="currencyinput">$
 			<input type="number" name="dollar" required="true" min="0" step="any"
 			autofocus="true"
-			value="
-			<?php 
+			placeholder=
+			"<?php 
 				if(isset($_REQUEST["dollar"]))
 					echo $_REQUEST["dollar"];
-				else echo "0";
-			?>
-			">
+				else echo 0;?>">
 			</span>
 		<input type="submit" value="Spend!">
 		</form>
